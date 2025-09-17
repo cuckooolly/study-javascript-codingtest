@@ -1,0 +1,32 @@
+// 문제 설명
+// 머쓱이는 태어난 지 6개월 된 조카를 돌보고 있습니다.
+// 조카는 아직 "aya", "ye", "woo", "ma" 네 가지 발음을 최대 한 번씩 사용해 조합한(이어 붙인) 발음밖에 하지 못합니다.
+// 문자열 배열 babbling이 매개변수로 주어질 때, 머쓱이의 조카가 발음할 수 있는 단어의 개수를 return하도록 solution 함수를 완성해주세요.
+
+// 내가 (거의 GPT가) 푼 풀이
+function solution(babbling) {
+    var answer = 0;
+
+    // 패턴 찾는게 어려울 것 같습니다.
+    pattern = /^(?!.*(aya|ye|woo|ma).*?\1)(?:aya|ye|woo|ma){1,}$/
+
+    for (babble of babbling){
+        if (pattern.test(babble) === true){
+            answer += 1;
+        }
+    }
+
+    return answer;
+}
+
+// 다른 사람이 푼 풀이
+function solution(babbling) {
+  var answer = 0;
+  const regex = /^(aya|ye|woo|ma)+$/; // 이렇게 간단한 패턴이 있었다니... 내가 할 땐 왜 안 됐을까?
+
+  babbling.forEach(word => {
+    if (regex.test(word)) answer++;
+  })
+
+  return answer;
+}
